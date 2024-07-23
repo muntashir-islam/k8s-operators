@@ -1,5 +1,5 @@
 # postgres-backup-azureblob-operator
-// TODO(user): Add simple overview of use/purpose
+A Kubernetes Operator for Backing Up PostgreSQL Databases and Storing Backups in Azure Blob Storage
 
 ## Description
 We can easily develop a program to take backups and run it as a cron job from a Kubernetes cluster. However, I want to achieve this in a more Kubernetes-native way.
