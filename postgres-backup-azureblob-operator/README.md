@@ -2,9 +2,61 @@
 // TODO(user): Add simple overview of use/purpose
 
 ## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+We can easily develop a program to take backups and run it as a cron job from a Kubernetes cluster. However, I want to achieve this in a more Kubernetes-native way.
 
-## Getting Started
+Every 24 hours, this operator will execute with the help of defined CRDs (Custom Resource Definitions). It will create a PostgreSQL pod and run the pg_dump command to generate the backup file. Subsequently, the process will push the generated backup file into Azure Blob Storage.
+
+For production run after deploying the deploy.yaml you have to create custom resource to provide connection profile for postgres db connection
+```yaml
+apiVersion: database.muntashirislam.com/v1alpha1
+kind: PostgresBackup
+metadata:
+  name: example-postgresbackup
+spec:
+  host: <azure-postgres-host>
+  port: 5432
+  user: <your-db-username>
+  dbName: <your-db-name>
+  containerName: <your-container-name>
+  storageAccount: <your-storage-account-name>
+  postgresSecret:
+    name: postgres-secret
+    key: password
+  azureSecret:
+    name: azure-secret
+    key: storage-key
+```
+Along with this you will aslo need two secrets to be present in the same namespaces
+```yaml
+# postgres-secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-secret
+  namespace: default
+type: Opaque
+data:
+  password: <base64-encoded-password>
+
+# azure-secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: azure-secret
+  namespace: default
+type: Opaque
+data:
+  storage-key: <base64-encoded-storage-key>
+```
+
+or you can use following way
+
+```shell
+kubectl create secret generic postgres-secret --from-literal=password=$(echo -n "your-postgres-password" | base64)
+kubectl create secret generic azure-secret --from-literal=storage-key=$(echo -n "your-storage-key" | base64)
+```
+
+## Getting Started Development RUN
 
 ### Prerequisites
 - go version v1.20.0+
@@ -67,7 +119,7 @@ make undeploy
 ```
 
 ## Contributing
-// TODO(user): Add detailed information on how you would like others to contribute to this project
+TBA
 
 **NOTE:** Run `make help` for more information on all potential `make` targets
 
