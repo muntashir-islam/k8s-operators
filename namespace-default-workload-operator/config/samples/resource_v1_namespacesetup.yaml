@@ -1,0 +1,12 @@
+apiVersion: resource.muntashirislam.com/v1
+kind: NamespaceSetup
+metadata:
+  labels:
+    app.kubernetes.io/name: namespacesetup
+    app.kubernetes.io/instance: namespacesetup-sample
+    app.kubernetes.io/part-of: namespace-default-workload-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: namespace-default-workload-operator
+  name: namespacesetup-sample
+spec:
+  # TODO(user): Add fields here

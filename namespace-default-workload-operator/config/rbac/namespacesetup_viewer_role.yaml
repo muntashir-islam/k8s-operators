@@ -1,0 +1,27 @@
+# permissions for end users to view namespacesetups.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: namespacesetup-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: namespace-default-workload-operator
+    app.kubernetes.io/part-of: namespace-default-workload-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: namespacesetup-viewer-role
+rules:
+- apiGroups:
+  - resource.muntashirislam.com
+  resources:
+  - namespacesetups
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - resource.muntashirislam.com
+  resources:
+  - namespacesetups/status
+  verbs:
+  - get
