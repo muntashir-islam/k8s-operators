@@ -1,0 +1,11 @@
+apiVersion: api.muntashirislam.com/v1alpha1
+kind: Scaler
+metadata:
+  name: scaler-sample
+spec:
+  start: 23
+  end: 1
+  replicas: 2
+  deployments:
+    - name: nginx
+      namespace: default
