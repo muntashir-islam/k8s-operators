@@ -1,4 +1,4 @@
-# Tcd ..imely-autoscaling-operator
+# Timely-autoscaling-operator
 Autoscaling depending on time
 
 ## Description
