@@ -41,8 +41,8 @@ def copy_resource(api_client, resource_type, source_namespace, target_namespace,
         else:
             raise
 
-@kopf.on.create('apps.example.com', 'v1alpha1', 'configmapsecretsyncs')
-@kopf.on.update('apps.example.com', 'v1alpha1', 'configmapsecretsyncs')
+@kopf.on.create('apps.muntashirislam.com', 'v1alpha1', 'configmapsecretsyncs')
+@kopf.on.update('apps.muntashirislam.com', 'v1alpha1', 'configmapsecretsyncs')
 def manage_configmap_secret_sync(spec, name, namespace, logger, **kwargs):
     api_client = kubernetes.client.ApiClient()
     source_namespace = spec.get('sourceNamespace')
