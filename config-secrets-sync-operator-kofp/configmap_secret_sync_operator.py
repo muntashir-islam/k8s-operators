@@ -3,7 +3,7 @@ import kubernetes.client
 from kubernetes import client, config
 
 # Load the Kubernetes config
-config.load_kube_config()
+config.load_incluster_config()
 
 def copy_resource(api_client, resource_type, source_namespace, target_namespace, resource_name):
     # Define API calls based on the resource type
