@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configmapsecretsync-operator
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: configmapsecretsync-operator
+  template:
+    metadata:
+      labels:
+        app: configmapsecretsync-operator
+    spec:
+      containers:
+      - name: configmapsecretsync-operator
+        image: your-registry/configmapsecretsync-operator:latest
+        imagePullPolicy: Always

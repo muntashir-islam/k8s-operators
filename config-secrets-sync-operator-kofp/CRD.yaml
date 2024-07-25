@@ -1,0 +1,16 @@
+apiVersion: apps.muntashirislam.com/v1alpha1
+kind: ConfigMapSecretSync
+metadata:
+  name: configmapsecretsync
+  namespace: default
+spec:
+  sourceNamespace: source-namespace
+  targetNamespaces:
+    - target-namespace1
+    - target-namespace2
+  configMapNames:
+    - configmap1
+    - configmap2
+  secretNames:
+    - secret1
+    - secret2
